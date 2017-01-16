@@ -49,5 +49,34 @@ namespace ManagedDns.Tests.Internals.FactoryTests
             //Additionals
             Assert.Equal(false, msg.Additionals.Any());
         }
+
+        [Fact]
+        public void ParseFromYahooMxQuery()
+        {
+            var msg = MessageFactory.FromParser(new RawByteParser(DnsQuerries.GetYahooMxQuery()));
+
+            Assert.Equal(10659, msg.Header.Id);
+            Assert.Equal(0, msg.Header.AnCount);
+            Assert.Equal(0, msg.Header.ArCount);
+            Assert.Equal(0, msg.Header.NsCount);
+            Assert.Equal(OpCode.Query, msg.Header.OpCode);
+            Assert.Equal(Qr.Query, msg.Header.Qr);
+            Assert.Equal(ResponseCode.NoError, msg.Header.RCode);
+            Assert.Equal(false, msg.Header.Aa);
+            Assert.Equal(false, msg.Header.Ra);
+            Assert.Equal(true, msg.Header.Rd);
+            Assert.Equal(false, msg.Header.Tc);
+            Assert.Equal(0, msg.Header.Z);
+
+            //Question
+            Assert.Equal(1, msg.Questions.Count());
+            Assert.Equal("yahoo.com.", msg.Questions.FirstOrDefault().QName);
+            Assert.Equal(RecordType.MxRecord, msg.Questions.FirstOrDefault().QType);
+            Assert.Equal(RecordClass.In, msg.Questions.FirstOrDefault().QClass);
+
+            Assert.Equal(false, msg.Answers.Any());
+            Assert.Equal(false, msg.Authorities.Any());
+            Assert.Equal(false, msg.Additionals.Any());
+        }
     }
 }
