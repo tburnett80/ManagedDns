@@ -41,7 +41,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
             Assert.Equal(RecordClass.In, msg.Answers.FirstOrDefault().Class);
             Assert.Equal((uint)3600, msg.Answers.FirstOrDefault().Ttl);
             Assert.Equal(76, msg.Answers.FirstOrDefault().RdLength);
-            //TODO: Add test parts for Txt Concrete once finished
+            Assert.Equal("v=spf1 include:_spf.google.com ip4:216.73.93.70/31 ip4:216.73.93.72/31 ~all", msg.Answers.FirstOrDefault().Record.DataAsString());
 
             //Authorities
             Assert.Equal(false, msg.Authorities.Any());

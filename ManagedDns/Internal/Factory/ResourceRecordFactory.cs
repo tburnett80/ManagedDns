@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using ManagedDns.Internal.Interfaces;
 using ManagedDns.Internal.Model;
 using ManagedDns.Public;

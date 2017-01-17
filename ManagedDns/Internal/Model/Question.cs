@@ -31,6 +31,11 @@ namespace ManagedDns.Internal.Model
 
             return bytes;
         }
+
+        public override string ToString()
+        {
+            return $"{QName.ToLower()}-{QClass}-{QType}";
+        }
     }
 }
 
