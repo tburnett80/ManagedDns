@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using ManagedDns.Internal.Model;
 
 namespace ManagedDns.Internal.Extensions
 {
     internal static class DnsExtensions
     {
-        //private const int HeaderSize = 12;
-
         internal static IEnumerable<byte> ToLabelBytes(this string value)
         {
             var temp = new List<byte>();
@@ -24,15 +24,15 @@ namespace ManagedDns.Internal.Extensions
             return temp;
         }
 
-        //internal static bool IsExpired(this IResourceRecord value)
-        //{
-        //    var expired = true;
+        internal static bool IsExpired(this ResourceRecord value)
+        {
+            var expired = true;
 
-        //    if (value != null)
-        //        expired = (value.TimeStamp.AddSeconds(value.Ttl).CompareTo(DateTime.Now) < 0);
+            if (value != null)
+                expired = value.TimeStamp.AddSeconds(value.Ttl).CompareTo(DateTime.Now) < 0;
 
-        //    return expired;
-        //}
+            return expired;
+        }
 
         internal static string ToArpa(this string ip)
         {
