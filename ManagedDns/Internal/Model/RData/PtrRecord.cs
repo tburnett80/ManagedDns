@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ManagedDns.Internal.Interfaces;
 
 namespace ManagedDns.Internal.Model.RData
 {
-    public class PtrRecord
+    internal sealed class PtrRecord : IRData
     {
+        internal readonly string DomainName;
+
+        internal PtrRecord(string domain)
+        {
+            DomainName = domain;
+        }
+
+        public string DataAsString()
+        {
+            return DomainName;
+        }
     }
 }

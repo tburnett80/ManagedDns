@@ -10,7 +10,7 @@ namespace ManagedDns.Internal.Model.RData
 
         internal readonly string Exchanger;
 
-        internal MxRecord(string exchange, ushort preference)
+        internal MxRecord(ushort preference, string exchange)
         {
             Preference = preference;
             Exchanger = exchange;

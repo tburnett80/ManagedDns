@@ -12,7 +12,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
         [Fact]
         public void CreateGoogleTxtResponse()
         {
-            var msg = MessageFactory.FromParser(new RawByteParser(DnsResponses.GoogleTxtResponse()));
+            var msg = MessageFactory.FromParser(new RawByteParser(DnsResponses.TXT()));
 
             //Header
             Assert.Equal(26951, msg.Header.Id);

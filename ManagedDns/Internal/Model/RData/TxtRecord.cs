@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ManagedDns.Internal.Interfaces;
 
 namespace ManagedDns.Internal.Model.RData
 {
-    public class TxtRecord
+    internal sealed class TxtRecord : IRData
     {
+        internal readonly string Text;
+
+        internal TxtRecord(string text)
+        {
+            Text = text;
+        }
+
+        public string DataAsString()
+        {
+            return Text;
+        }
     }
 }

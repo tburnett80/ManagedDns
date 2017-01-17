@@ -20,13 +20,13 @@ namespace ManagedDns.Internal.Model
 
         public IEnumerable<byte> Rdata { get; set; }
 
-        public object Record { get; set; }
+        public IRData Record { get; set; }
 
         public DateTimeOffset TimeStamp { get; private set; }
 
         internal ResourceRecord() { TimeStamp = DateTimeOffset.UtcNow; }
 
-        internal ResourceRecord(string name, ushort rtype, ushort rclass, uint ttl, ushort rdlen, IEnumerable<byte> rdata)
+        internal ResourceRecord(string name, ushort rtype, ushort rclass, uint ttl, ushort rdlen, IEnumerable<byte> rawRdata, IRData rdata)
         {
             TimeStamp = DateTimeOffset.UtcNow;
             Name = name;
@@ -34,8 +34,8 @@ namespace ManagedDns.Internal.Model
             Class = (RecordClass) rclass;
             Ttl = ttl;
             RdLength = rdlen;
-            Rdata = rdata;
-            //TODO instantiate record from rdata
+            Rdata = rawRdata;
+            Record = rdata;
         }
 
         public IEnumerable<byte> ToBytes()

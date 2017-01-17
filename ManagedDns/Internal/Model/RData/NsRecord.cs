@@ -2,7 +2,7 @@
 
 namespace ManagedDns.Internal.Model.RData
 {
-    internal class NsRecord : IRData
+    internal sealed class NsRecord : IRData
     {
         internal readonly string NsDomainName;
 
