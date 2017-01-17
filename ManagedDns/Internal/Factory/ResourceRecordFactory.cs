@@ -18,8 +18,6 @@ namespace ManagedDns.Internal.Factory
             var rdlen = parser.ReadUShort();
             var rdata = parser.GetRdata(rdlen);
 
-            var str = rdata.Select(b => b.ToString()).Aggregate((c, n) => c + "," + n);
-
             return new ResourceRecord(label, type, _class, ttl, rdlen, rdata, RDataFactory.FactoryRecord((RecordType)type, rdata));
         }
     }

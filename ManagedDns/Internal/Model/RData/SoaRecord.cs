@@ -32,7 +32,7 @@ namespace ManagedDns.Internal.Model.RData
         public string DataAsString()
         {
             //TODO: impliment standard format
-            throw new System.NotImplementedException();
+            return string.Empty;
         }
     }
 }
