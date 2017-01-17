@@ -27,18 +27,18 @@ namespace ManagedDns.Internal.Factory
             if (bytes == null || bytes.Count() < 6)
                 return new Header();
 
-            var bits = bytes.Skip((int)HeaderBytePosition.Flags).Take(2).ToLeUShort();
+            var bits = Convert.ToString(bytes.Skip((int)HeaderBytePosition.Flags).Take(2).ToLeUShort(), 2).PadLeft(16, '0');
 
             return new Header(
                     bytes.Skip((int)HeaderBytePosition.Id).Take(2).ToLeUShort(), //id
-                    (bits >> (int)Header.HeaderBitPosition.Qr) & 1, //qr
-                    (bits >> (int)Header.HeaderBitPosition.OpCode) & 15, //op code
-                    ((bits >> (int)Header.HeaderBitPosition.Aa) & 1) == 1, //aa
-                    ((bits >> (int)Header.HeaderBitPosition.Tc) & 1) == 1, //tc
-                    ((bits >> (int)Header.HeaderBitPosition.Rd) & 1) == 1, //rd
-                    ((bits >> (int)Header.HeaderBitPosition.Ra) & 1) == 1, //ra
-                    (ushort)((bits >> (int)Header.HeaderBitPosition.Z) & 7), //z
-                    (bits >> (int)Header.HeaderBitPosition.RCode) & 15, //rcode
+                    Convert.ToInt32(bits.Substring(0, 1), 2), //Qr
+                    Convert.ToInt32(bits.Substring(1, 4), 2), //OpCode
+                    Convert.ToInt32(bits.Substring(5, 1), 2) == 1, //Aa
+                    Convert.ToInt32(bits.Substring(6, 1), 2) == 1, //Tc
+                    Convert.ToInt32(bits.Substring(7, 1), 2) == 1, //Rd
+                    Convert.ToInt32(bits.Substring(8, 1), 2) == 1, //Ra
+                    (ushort)Convert.ToInt32(bits.Substring(9, 3), 2),//Z
+                    Convert.ToInt32(bits.Substring(12, 4), 2), //RCode
                     bytes.Skip((int)HeaderBytePosition.QdCount).Take(2).ToLeUShort(), //qdcount
                     bytes.Skip((int)HeaderBytePosition.AnCount).Take(2).ToLeUShort(), //ancount
                     bytes.Skip((int)HeaderBytePosition.NsCount).Take(2).ToLeUShort(), //nscount

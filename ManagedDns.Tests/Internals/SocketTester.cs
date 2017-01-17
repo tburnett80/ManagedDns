@@ -13,7 +13,7 @@ namespace ManagedDns.Tests.Internals
 {
     public class SocketTester
     {
-        [Fact]
+        //[Fact]
         public void TestSocket()
         {
             var sock = new UdpDnsTransport();
