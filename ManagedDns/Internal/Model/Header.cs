@@ -19,31 +19,31 @@ namespace ManagedDns.Internal.Model
             Qr = 15,
         }
 
-        public ushort Id { get; set; }
+        public readonly ushort Id;
 
-        public Qr Qr { get; set; }
+        public readonly Qr Qr;
 
-        public OpCode OpCode { get; set; }
+        public readonly OpCode OpCode;
 
-        public bool Aa { get; set; }
+        public readonly bool Aa;
 
-        public bool Tc { get; set; }
+        public readonly bool Tc;
 
-        public bool Rd { get; set; }
+        public readonly bool Rd;
 
-        public bool Ra { get; set; }
+        public readonly bool Ra;
 
-        public ushort Z { get; set; }
+        public readonly ushort Z;
 
-        public ResponseCode RCode { get; set; }
+        public readonly ResponseCode RCode;
 
-        public ushort QdCount { get; set; }
+        public readonly ushort QdCount;
 
-        public ushort AnCount { get; set; }
+        public readonly ushort AnCount;
 
-        public ushort NsCount { get; set; }
+        public readonly ushort NsCount;
 
-        public ushort ArCount { get; set; }
+        public readonly ushort ArCount;
 
         internal Header() {  }
 
@@ -89,6 +89,8 @@ namespace ManagedDns.Internal.Model
         }
     }
 }
+//http://stackoverflow.com/questions/127027/how-to-check-my-byte-flag
+
 /*  4.1.1. Header section format
  * 
 	The header contains the following fields:

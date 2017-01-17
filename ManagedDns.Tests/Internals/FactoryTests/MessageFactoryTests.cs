@@ -78,5 +78,19 @@ namespace ManagedDns.Tests.Internals.FactoryTests
             Assert.Equal(false, msg.Authorities.Any());
             Assert.Equal(false, msg.Additionals.Any());
         }
+
+        [Fact]
+        public void CreateYahooMxQuery()
+        {
+            var query = MessageFactory.FromQuery(QuestionFactory.FactoryQuestion(RecordType.MxRecord, "yahoo.com."));
+
+            //249,51,0,0,0,1,0,0,0,0,0,0,5,121,97,104,111,111,3,99,111,109,0,0,15,0,1
+            var asStr = query.ToBytes().Select(b => b.ToString()).Aggregate((c, n) => c + "," + n);
+
+            //41,163,1,0,0,1,0,0,0,0,0,0,5,121,97,104,111,111,3,99,111,109,0,0,15,0,1
+            var bsStr = DnsQuerries.GetYahooMxQuery().Select(b => b.ToString()).Aggregate((c, n) => c + "," + n);
+
+            Assert.Equal(DnsQuerries.GetYahooMxQuery(), query.ToBytes());
+        }
     }
 }

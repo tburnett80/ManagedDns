@@ -36,5 +36,14 @@ namespace ManagedDns.Internal.Factory
 
             return msg;
         }
+
+        internal static Message FromQuery(Question question)
+        {
+            return new Message
+                {
+                    Header = HeaderFactory.ForQuery(),
+                    Questions = new List<Question> { question }
+                };
+        }
     }
 }

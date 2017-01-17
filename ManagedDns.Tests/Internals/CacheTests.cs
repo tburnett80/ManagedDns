@@ -21,7 +21,7 @@ namespace ManagedDns.Tests.Internals
             var added = QueryCache.AddCache(msg);
             Assert.Equal(true, added);
 
-            //Try to re-add but fail because its already in cache
+            //Try to re-add but fail because its already in cache`
             var readded = QueryCache.AddCache(msg);
             Assert.Equal(false, readded);
         }

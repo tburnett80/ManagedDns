@@ -5,6 +5,7 @@ using System.Linq;
 using ManagedDns.Internal.Extensions;
 using ManagedDns.Internal.Interfaces;
 using ManagedDns.Internal.Model;
+using ManagedDns.Public;
 
 namespace ManagedDns.Internal.Factory
 {
@@ -54,6 +55,15 @@ namespace ManagedDns.Internal.Factory
                 return new Header();
 
             return FromBytes(parser.GetByteRange(0, 12));
+        }
+
+        internal static Header ForQuery()
+        {
+            return new Header(
+                    (ushort) new Random().Next(),
+                    0, (int)OpCode.Query,
+                    false, false,false, false, 0,0,1,0,0,0
+                );
         }
     }
 }

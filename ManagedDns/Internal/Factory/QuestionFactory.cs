@@ -11,8 +11,11 @@ namespace ManagedDns.Internal.Factory
             return new Question(parser.ReadLabels(), parser.ReadUShort(), parser.ReadUShort());
         }
 
-        internal static Question FactoryQuestion(string name, RecordType rtype, RecordClass rclass = RecordClass.In)
+        internal static Question FactoryQuestion(RecordType rtype, string name = null, RecordClass rclass = RecordClass.In)
         {
+            if (!string.IsNullOrEmpty(name) && !name.Substring(name.Length - 1).Equals("."))
+                name = $"{name}.";
+
             return new Question(name, (ushort)rtype, (ushort)rclass);
         }
     }

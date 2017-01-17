@@ -7,11 +7,11 @@ namespace ManagedDns.Internal.Model
 {
     internal sealed class Question : IByteConverter
     {
-        public string QName { get; set; }
+        public readonly string QName;
 
-        public RecordType QType { get; set; }
+        public readonly RecordType QType;
 
-        public RecordClass QClass { get; set; }
+        public readonly RecordClass QClass;
 
         internal Question() { }
 

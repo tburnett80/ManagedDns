@@ -12,7 +12,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
         [Fact]
         public void CreateQuestionTest()
         {
-            var question = QuestionFactory.FactoryQuestion("test", RecordType.ARecord, RecordClass.Hs);
+            var question = QuestionFactory.FactoryQuestion(RecordType.ARecord, "test", RecordClass.Hs);
 
             Assert.Equal("test", question.QName);
             Assert.Equal(RecordType.ARecord, question.QType);
