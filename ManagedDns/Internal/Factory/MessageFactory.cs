@@ -37,11 +37,11 @@ namespace ManagedDns.Internal.Factory
             return msg;
         }
 
-        internal static Message FromQuery(Question question)
+        internal static Message FromQuery(Question question, bool recursion = false)
         {
             return new Message
                 {
-                    Header = HeaderFactory.ForQuery(),
+                    Header = HeaderFactory.ForQuery(recursion),
                     Questions = new List<Question> { question }
                 };
         }

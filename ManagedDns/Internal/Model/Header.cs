@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using ManagedDns.Internal.Extensions;
 using ManagedDns.Internal.Interfaces;
 using ManagedDns.Public;
@@ -67,15 +69,16 @@ namespace ManagedDns.Internal.Model
 
         public IEnumerable<byte> ToBytes()
         {
-            ushort bits = 0;
-            bits |= (ushort)(((ushort)RCode & 15) << (int) HeaderBitPosition.RCode);
-            bits |= (ushort)((Z & 7) << (int) HeaderBitPosition.Z);
-            bits |= (ushort)(((Ra ? 1 : 0) & 1) << (int) HeaderBitPosition.Ra);
-            bits |= (ushort)(((Rd ? 1 : 0) & 1) << (int) HeaderBitPosition.Rd);
-            bits |= (ushort)(((Tc ? 1 : 0) & 1) << (int) HeaderBitPosition.Tc);
-            bits |= (ushort)(((Aa ? 1 : 0) & 1) << (int) HeaderBitPosition.Aa);
-            bits |= (ushort)(((ushort)OpCode & 15) << (int) HeaderBitPosition.OpCode);
-            bits |= (ushort)(((ushort)Qr & 1) << (int) HeaderBitPosition.Qr);
+            var result = new StringBuilder();
+            result.Append(Qr == Qr.Query ? "0" : "1");
+            result.Append(Convert.ToString((int)OpCode, 2).PadLeft(4, '0'));
+            result.Append(Aa ? "1" : "0");
+            result.Append(Tc ? "1" : "0");
+            result.Append(Rd ? "1" : "0");
+            result.Append(Ra ? "1" : "0");
+            result.Append(Convert.ToString(Z, 2).PadLeft(3, '0'));
+            result.Append(Convert.ToString((int)RCode, 2).PadLeft(4, '0'));
+            var bits = Convert.ToUInt16(result.ToString(), 2);
 
             var bytes = new List<byte>();
             bytes.AddRange(Id.ToBeBytes());
@@ -89,7 +92,6 @@ namespace ManagedDns.Internal.Model
         }
     }
 }
-//http://stackoverflow.com/questions/127027/how-to-check-my-byte-flag
 
 /*  4.1.1. Header section format
  * 

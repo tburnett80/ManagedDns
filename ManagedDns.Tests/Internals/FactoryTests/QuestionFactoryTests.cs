@@ -14,7 +14,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
         {
             var question = QuestionFactory.FactoryQuestion(RecordType.ARecord, "test", RecordClass.Hs);
 
-            Assert.Equal("test", question.QName);
+            Assert.Equal("test.", question.QName);
             Assert.Equal(RecordType.ARecord, question.QType);
             Assert.Equal(RecordClass.Hs, question.QClass);
         }

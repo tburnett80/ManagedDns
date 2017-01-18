@@ -57,12 +57,12 @@ namespace ManagedDns.Internal.Factory
             return FromBytes(parser.GetByteRange(0, 12));
         }
 
-        internal static Header ForQuery()
+        internal static Header ForQuery(bool recrusion = false)
         {
             return new Header(
                     (ushort) new Random().Next(),
                     0, (int)OpCode.Query,
-                    false, false,false, false, 0,0,1,0,0,0
+                    false, false, recrusion, false, 0,0,1,0,0,0
                 );
         }
     }
