@@ -28,7 +28,7 @@ namespace ManagedDns.Internal.Engines
                 return result;
 
             result = _rawMessage.Skip(Position).FirstOrDefault();
-            ++Position;
+            Position++;
 
             return result;
         }
@@ -50,7 +50,7 @@ namespace ManagedDns.Internal.Engines
             {
                 if ((len & 0xc0) == 0xc0) //Compression
                 {
-                    var subReader = new RawByteParser(RawMessage, (len & 0x3f) | NextByte());
+                    var subReader = new RawByteParser(_rawMessage, (len & 0x3f) | NextByte());
                     sb.Append(subReader.ReadLabels());
                     return sb.ToString();
                 }
@@ -76,21 +76,21 @@ namespace ManagedDns.Internal.Engines
 
         public ushort ReadUShort()
         {
-            var result = RawMessage.Skip(Position).Take(2).ToLeUShort();
+            var result = _rawMessage.Skip(Position).Take(2).ToLeUShort();
             Position += 2;
             return result;
         }
 
         public uint ReadUInt()
         {
-            var result = RawMessage.Skip(Position).Take(4).ToLeUInt();
+            var result = _rawMessage.Skip(Position).Take(4).ToLeUInt();
             Position += 4;
             return result;
         }
 
         public IEnumerable<byte> GetRdata(ushort len)
         {
-            return RawMessage.Skip(Position).Take(len);
+            return _rawMessage.Skip(Position).Take(len);
         }
 
         public IEnumerable<byte> GetByteRange(int start, int length)
