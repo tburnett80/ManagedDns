@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using ManagedDns.Internal.Model;
-using System.Linq;
 
 namespace ManagedDns.Internal.Extensions
 {

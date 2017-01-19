@@ -8,21 +8,21 @@ namespace ManagedDns.Internal.Model
 {
     internal sealed class ResourceRecord : IByteConverter
     {
-        public string Name { get; set; }
+        internal readonly string Name;
 
-        public RecordType Type { get; set; }
+        internal readonly RecordType Type;
 
-        public RecordClass Class { get; set; }
+        internal readonly RecordClass Class;
 
-        public uint Ttl { get; set; }
+        internal readonly uint Ttl;
 
-        public ushort RdLength { get; set; }
+        internal readonly ushort RdLength;
 
-        public IEnumerable<byte> Rdata { get; set; }
+        internal readonly IEnumerable<byte> Rdata;
 
-        public IRData Record { get; set; }
+        internal readonly IRData Record;
 
-        public DateTimeOffset TimeStamp { get; private set; }
+        internal readonly DateTimeOffset TimeStamp;
 
         internal ResourceRecord() { TimeStamp = DateTimeOffset.UtcNow; }
 

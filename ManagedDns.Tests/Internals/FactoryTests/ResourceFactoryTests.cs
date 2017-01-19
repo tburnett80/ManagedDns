@@ -135,7 +135,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
             Assert.Equal(new byte[] { 15, 100, 102, 119, 48, 54, 115, 52, 48, 45, 105, 110, 45, 102, 50, 49, 5, 49, 101, 49, 48, 48, 3, 110, 101, 116, 0 }, resourceRecord.Rdata);
         }
 
-        [Fact] //TODO: Fix SOA parsing
+        [Fact] 
         public void FactoryResouceRecordSoa()
         {
             var parser = new RawByteParser(DnsResponses.SOA());

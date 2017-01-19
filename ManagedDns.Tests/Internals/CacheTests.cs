@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ManagedDns.Internal;
 using ManagedDns.Internal.Engines;
 using ManagedDns.Internal.Factory;
@@ -40,6 +36,15 @@ namespace ManagedDns.Tests.Internals
             var fromCache = QueryCache.CheckCache(msg.Questions.FirstOrDefault());
             Assert.NotNull(fromCache);
             Assert.Equal(msg.Answers.FirstOrDefault().Name, fromCache.Answers.FirstOrDefault().Name);
+        }
+
+        [Fact]
+        public void CacheResponseNullTest()
+        {
+            var msg = MessageFactory.FromParser(new RawByteParser(DnsResponses.MX()));
+
+            var fromCache = QueryCache.CheckCache(msg.Questions.FirstOrDefault());
+            Assert.Null(fromCache);
         }
     }
 }
