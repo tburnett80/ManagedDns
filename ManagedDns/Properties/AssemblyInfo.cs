@@ -18,3 +18,4 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("dc9550f9-33a6-4391-a73c-40c0a5f09c7f")]
 [assembly: InternalsVisibleTo("ManagedDns.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]

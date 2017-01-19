@@ -4,6 +4,7 @@ using ManagedDns.Internal.Engines;
 using ManagedDns.Internal.Extensions;
 using ManagedDns.Internal.Factory;
 using ManagedDns.Internal.Model;
+using ManagedDns.Public;
 using ManagedDns.Public.Models.RData;
 using ManagedDns.Tests.TestResources;
 using Xunit;
@@ -66,6 +67,38 @@ namespace ManagedDns.Tests.Internals.ExtensionTests
         public void TestNullQuestionConversion()
         {
             Question test = null;
+
+            // ReSharper disable once ExpressionIsAlwaysNull
+            var model = test.Convert();
+
+            Assert.Null(test);
+            Assert.Null(model);
+        }
+
+        [Fact]
+        public void TestQuestion2Conversion()
+        {
+            var question = new Public.Models.Question
+                {
+                    QuestionClass = RecordClass.Ch,
+                    QuestionType = RecordType.PtrRecord,
+                    QuestionName = "test.com."
+                };
+
+            var model = question.Convert();
+
+            Assert.NotNull(question);
+            Assert.NotNull(model);
+
+            Assert.Equal(question.QuestionName, model.QName);
+            Assert.Equal(question.QuestionType, model.QType);
+            Assert.Equal(question.QuestionClass, model.QClass);
+        }
+
+        [Fact]
+        public void TestNullQuestion2Conversion()
+        {
+            Public.Models.Question test = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
             var model = test.Convert();

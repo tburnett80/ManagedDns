@@ -10,6 +10,7 @@ namespace ManagedDns.Internal.Extensions
     /// </summary>
     internal static class ModelMapperExtension
     {
+        #region Internal to Public
         internal static Public.Models.Header Convert(this Header header)
         {
             if (header == null)
@@ -171,6 +172,18 @@ namespace ManagedDns.Internal.Extensions
                 Text = rec.Text
             };
         }
+        #endregion
+
+        #region Public to Internal
+
+        internal static Question Convert(this Public.Models.Question question)
+        {
+            return question == null 
+                ? null 
+                : QuestionFactory.FactoryQuestion(question.QuestionType, question.QuestionName, question.QuestionClass);
+        }
+        
+        #endregion
     }
 }
 
