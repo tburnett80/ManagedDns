@@ -1,10 +1,11 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using ManagedDns.Internal.Model;
 
 namespace ManagedDns.Internal.Interfaces
 {
     internal interface IDnsTransport
     {
-        Message SendRequest(Message request, IPEndPoint dnsServer, int timeOut = 30);
+        IEnumerable<byte> SendRequest(Message request, IPEndPoint dnsServer, int timeOut = 30);
     }
 }

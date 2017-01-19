@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using ManagedDns.Internal.Engines;
 using ManagedDns.Internal.Interfaces;
 using ManagedDns.Internal.Model;
 
@@ -37,7 +39,12 @@ namespace ManagedDns.Internal.Factory
             return msg;
         }
 
-        internal static Message FromQuery(Question question, bool recursion = false)
+        internal static Message FromRawData(IEnumerable<byte> data)
+        {
+            return FromParser(new RawByteParser(data.ToArray()));
+        }
+
+        internal static Message FromQuery(Question question, bool recursion = true)
         {
             return new Message
                 {
