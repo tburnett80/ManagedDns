@@ -20,18 +20,6 @@ namespace ManagedDns.Internal.Engines
             _rawMessage = rawMessage;
             Position = pos;
         }
-
-        private byte NextByte()
-        {
-            var result = (byte)0;
-            if (Position >= _rawMessage.Count)
-                return result;
-
-            result = _rawMessage.Skip(Position).FirstOrDefault();
-            Position++;
-
-            return result;
-        }
         #endregion
 
         #region Methods
@@ -40,6 +28,22 @@ namespace ManagedDns.Internal.Engines
         public IList<byte> RawMessage => _rawMessage;
 
         public int Position { get; private set; }
+
+        public IEnumerable<byte> GetByteRange(int start, int length)
+        {
+            return _rawMessage.Skip(start).Take(length);
+        }
+
+        public byte NextByte()
+        {
+            if (Position >= RawMessage.Count)
+                return 0;
+
+            var result = _rawMessage.Skip(Position).FirstOrDefault();
+            ++Position;
+
+            return result;
+        }
 
         public string ReadLabels()
         {
@@ -77,6 +81,7 @@ namespace ManagedDns.Internal.Engines
         public ushort ReadUShort()
         {
             var result = _rawMessage.Skip(Position).Take(2).ToLeUShort();
+
             Position += 2;
             return result;
         }
@@ -84,6 +89,7 @@ namespace ManagedDns.Internal.Engines
         public uint ReadUInt()
         {
             var result = _rawMessage.Skip(Position).Take(4).ToLeUInt();
+
             Position += 4;
             return result;
         }
@@ -92,12 +98,6 @@ namespace ManagedDns.Internal.Engines
         {
             return _rawMessage.Skip(Position).Take(len);
         }
-
-        public IEnumerable<byte> GetByteRange(int start, int length)
-        {
-            return _rawMessage.Skip(start).Take(length);
-        }
-
         #endregion
     }
 }

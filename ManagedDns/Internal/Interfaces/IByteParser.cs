@@ -4,6 +4,8 @@ namespace ManagedDns.Internal.Interfaces
 {
     internal interface IByteParser
     {
+        byte NextByte();
+
         IList<byte> RawMessage { get; }
 
         int Position { get; }

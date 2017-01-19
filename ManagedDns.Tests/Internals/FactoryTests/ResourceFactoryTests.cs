@@ -80,7 +80,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
             Assert.Equal("www.yahoo.com.", resourceRecord.Name);
             Assert.Equal(15, resourceRecord.RdLength);
             Assert.Equal((uint)300, resourceRecord.Ttl);
-            Assert.Equal("fd-fp3.wg1.b.", resourceRecord.Record.DataAsString());
+            Assert.Equal("fd-fp3.wg1.b.yahoo.com.", resourceRecord.Record.DataAsString());
             Assert.Equal(new byte[] { 6, 102, 100, 45, 102, 112, 51, 3, 119, 103, 49, 1, 98, 192, 16 }, resourceRecord.Rdata);
         }
 
@@ -114,7 +114,7 @@ namespace ManagedDns.Tests.Internals.FactoryTests
             Assert.Equal("yahoo.com.", resourceRecord.Name);
             Assert.Equal(6, resourceRecord.RdLength);
             Assert.Equal((uint)172800, resourceRecord.Ttl);
-            Assert.Equal("ns5.", resourceRecord.Record.DataAsString());
+            Assert.Equal("ns5.yahoo.com.", resourceRecord.Record.DataAsString());
             Assert.Equal(new byte[] { 3, 110, 115, 53, 192, 12 }, resourceRecord.Rdata);
         }
 

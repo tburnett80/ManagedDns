@@ -10,6 +10,9 @@ namespace ManagedDns.Internal.Factory
     {
         internal static ResourceRecord FromParser(IByteParser parser)
         {
+            if (parser == null)
+                return new ResourceRecord();
+
             var label = parser.ReadLabels();
             var type = parser.ReadUShort();
             var _class = parser.ReadUShort();
@@ -17,7 +20,7 @@ namespace ManagedDns.Internal.Factory
             var rdlen = parser.ReadUShort();
             var rdata = parser.GetRdata(rdlen);
 
-            return new ResourceRecord(label, type, _class, ttl, rdlen, rdata, RDataFactory.FactoryRecord((RecordType)type, rdata));
+            return new ResourceRecord(label, type, _class, ttl, rdlen, rdata, RDataFactory.FactoryRecord((RecordType)type, parser));
         }
     }
 }
