@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>io.timburnett.manageddns</id>
+    <version>0.9.1</version>
+    <title>ManagedDns</title>
+    <authors>Tim Burnett</authors>
+    <owners>Tim Burnett</owners>
+    <licenseUrl>https://github.com/tburnett80/ManagedDns/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tburnett80/ManagedDns</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Make DNS and WHOIS Querires</description>
+    <releaseNotes>Inital alpha release</releaseNotes>
+    <copyright>Copyright 2017 Tim Burnett</copyright>
+    <tags>dns query dnsquery manageddns</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\net45\ManagedDns.dll" target="lib\net45" />
+    <file src="bin\Release\net461\ManagedDns.dll" target="lib\net461" />
+  </files>
+</package>
