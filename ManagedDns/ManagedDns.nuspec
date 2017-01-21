@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/tburnett80/ManagedDns</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Make DNS and WHOIS Querires</description>
-    <releaseNotes>Inital alpha release</releaseNotes>
+    <releaseNotes>Inital alpha release. Library is not yet finished.</releaseNotes>
     <copyright>Copyright 2017 Tim Burnett</copyright>
     <tags>dns query dnsquery manageddns</tags>
   </metadata>
