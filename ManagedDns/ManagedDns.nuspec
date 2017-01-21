@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>io.timburnett.manageddns</id>
+    <id>ManagedDns</id>
     <version>0.9.1</version>
     <title>ManagedDns</title>
     <authors>Tim Burnett</authors>
@@ -16,6 +16,9 @@
   </metadata>
   <files>
     <file src="bin\Release\net45\ManagedDns.dll" target="lib\net45" />
+    <file src="bin\Release\net451\ManagedDns.dll" target="lib\net451" />
+    <file src="bin\Release\net452\ManagedDns.dll" target="lib\net452" />
+    <file src="bin\Release\net46\ManagedDns.dll" target="lib\net46" />
     <file src="bin\Release\net461\ManagedDns.dll" target="lib\net461" />
   </files>
 </package>
