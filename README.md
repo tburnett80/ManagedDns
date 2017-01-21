@@ -1,4 +1,4 @@
-# ManagedDns .Net Core / Standard Managed DNS Query Support
+# ManagedDns .Net Managed DNS Query Support
 
 library to do native DNS and WHOIS queries in 100% managed .NET Core / Standard code.
 
